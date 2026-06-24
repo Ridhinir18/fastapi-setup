@@ -27,7 +27,7 @@ HF_BUCKET_ID = os.getenv("HF_BUCKET_ID", "your-username/academic-vault")
 
 app = FastAPI()
 my_workers = ThreadPoolExecutor(max_workers=4)
-ai_model = SentenceTransformer("all-MiniLM-L6-v2")
+ai_model = SentenceTransformer("all-MiniLM-L6-v2",token=False)
 
 @app.post("/bulk-courses")
 def add_many_courses(
