@@ -1,14 +1,24 @@
-fastapi
-uvicorn
-sqlalchemy
-psycopg2-binary
-python-dotenv
-pdfplumber
-groq
-sentence-transformers
-pgvector
-youtube-transcript-api
-huggingface-hub
-python-multipart
-torch
-transformers
+# fastapi
+# uvicorn
+# sqlalchemy
+# psycopg2-binary
+# python-dotenv
+# pdfplumber
+# groq
+# sentence-transformers
+# pgvector
+# youtube-transcript-api
+# huggingface-hub
+# python-multipart
+# transformers
+
+fastapi>=0.110.0
+granian>=1.0.0
+groq>=0.9.0
+pdfplumber>=0.11.0
+python-dotenv>=1.0.1
+sqlalchemy>=2.0.0
+pgvector>=0.2.5
+youtube-transcript-api>=0.6.2
+huggingface-hub>=0.23.0
+requests>=2.31.0
