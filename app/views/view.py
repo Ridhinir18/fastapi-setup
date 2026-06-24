@@ -317,7 +317,6 @@ async def start_syllabus_processing(
                         db.flush()
                         seen_lessons.add(lesson_unique_key)
                         new_section_dict["lessons"].append(lesson_name)
-
         db.commit()
 
         safe_course_title = re.sub(r'[^a-zA-Z0-9_]', '_', course_name)
