@@ -17,7 +17,7 @@ from ..database import get_db
 from ..models import models
 from ..schemas import schemas
 import time
-from huggingface_hub import batch_bucket_files,HfApi
+from huggingface_hub import batch_bucket_files
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "0" 
 load_dotenv()
@@ -203,25 +203,17 @@ def get_sections_and_lessons(chunk_text: str):
             raise error_msg
 
 def upload_file_to_hf_bucket(local_file_path: str, remote_path: str):
-    """
-    Safely uploads files to Hugging Face using the robust, official HfApi class.
-    Bypasses structural Xet tree authentication bugs.
-    """
     try:
-        print(f"[HF Hub] Preparing secure upload to {HF_BUCKET_ID}/{remote_path}...")
-        api = HfApi(token=hf_token)
-        
-        api.upload_file(
-            path_or_fileobj=local_file_path,
-            path_in_repo=remote_path,
-            repo_id=HF_BUCKET_ID,
-            repo_type="model"  
+        print(f"[HF Bucket] Attempting upload to {HF_BUCKET_ID}/{remote_path}...")
+        batch_bucket_files(
+            bucket_id=HF_BUCKET_ID,
+            add=[(local_file_path, remote_path)],
+            token=hf_token
         )
-        print(f"[HF Hub] Successfully pushed asset: {remote_path}")
+        print(f"[HF Bucket] Successfully uploaded {remote_path}!")
     except Exception as e:
-        print(f"[HF Hub Error] Direct upload layer failure: {e}")
+        print(f"[HF Bucket Error] Failed uploading {remote_path}: {e}")
         raise e
-
 
 @app.post("/process-syllabus")
 async def start_syllabus_processing(
@@ -325,6 +317,7 @@ async def start_syllabus_processing(
                         db.flush()
                         seen_lessons.add(lesson_unique_key)
                         new_section_dict["lessons"].append(lesson_name)
+
         db.commit()
 
         safe_course_title = re.sub(r'[^a-zA-Z0-9_]', '_', course_name)
