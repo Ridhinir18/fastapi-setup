@@ -11,3 +11,5 @@ uploads/*
 !uploads/.gitkeep
 dist/
 build/
+*.sqlite3
+Thumbs.db
