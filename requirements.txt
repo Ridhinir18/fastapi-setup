@@ -3,6 +3,12 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 python-dotenv
-pdfplumber 
-huggingface_hub 
+pdfplumber
+groq
+sentence-transformers
+pgvector
+youtube-transcript-api
+huggingface-hub
 python-multipart
+torch
+transformers
