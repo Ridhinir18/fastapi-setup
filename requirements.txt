@@ -1,14 +1,10 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.2.1+cpu
-fastapi>=0.110.0
-# uvicorn>=0.28.0
-pydantic>=2.6.0
-# python-multipart>=0.0.9
-sqlalchemy>=2.0.0
-pgvector>=0.2.5
-pdfplumber>=0.11.0
-groq>=0.9.0
-sentence-transformers>=2.6.0
-huggingface-hub>=0.21.0
-youtube-transcript-api>=0.6.2
-python-dotenv>=1.0.1
+fastapi==0.138.0
+groq==1.5.0
+huggingface_hub==1.20.1
+pdfplumber==0.11.9
+pgvector==0.4.2
+pydantic==2.13.4
+python-dotenv==1.2.2
+sentence_transformers==5.6.0
+SQLAlchemy==2.0.51
+youtube_transcript_api==1.2.4
